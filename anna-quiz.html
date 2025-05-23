@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Kind of Courage Hero Are You?</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1a1a1a;
+      color: #f5f5f5;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      color: #ffcc00;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .question {
+      margin-bottom: 2rem;
+    }
+    .question h2 {
+      font-size: 1.2rem;
+      color: #ffd700;
+    }
+    .option {
+      margin: 0.5rem 0;
+    }
+    .option input {
+      margin-right: 0.5rem;
+    }
+    #submitBtn {
+      background-color: #ffcc00;
+      color: #1a1a1a;
+      border: none;
+      padding: 0.7rem 1.4rem;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      display: block;
+      margin: 2rem auto;
+    }
+    #submitBtn:hover {
+      background-color: #e6b800;
+    }
+    #result {
+      background-color: #2c2c2c;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.1);
+    }
+    #result h2 {
+      color: #ffd700;
+    }
+
+        footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #ffcc00;
+    }
+  </style>
+</head>
+<body>
+  <h1>What Kind of Courage Hero Are You?</h1>
+
+  <form id="quizForm">
+    <div class="question">
+      <h2>1. How do you respond when you're nervous?</h2>
+      <label class="option"><input type="radio" name="q1" value="anna">I pray and ask God for help.</label><br>
+      <label class="option"><input type="radio" name="q1" value="lily">I take a deep breath and wait.</label><br>
+      <label class="option"><input type="radio" name="q1" value="cade">I push through anyway — I have a mission!</label><br>
+      <label class="option"><input type="radio" name="q1" value="jacob">I stay quiet and observe.</label>
+    </div>
+
+    <div class="question">
+      <h2>2. What type of courage feels most natural to you?</h2>
+      <label class="option"><input type="radio" name="q2" value="anna">Facing my fears head-on</label><br>
+      <label class="option"><input type="radio" name="q2" value="lily">Staying faithful when no one sees</label><br>
+      <label class="option"><input type="radio" name="q2" value="cade">Taking action even when it’s hard</label><br>
+      <label class="option"><input type="radio" name="q2" value="jacob">Standing up quietly for what’s right</label>
+    </div>
+
+    <div class="question">
+      <h2>3. What makes you feel brave?</h2>
+      <label class="option"><input type="radio" name="q3" value="anna">Worship music</label><br>
+      <label class="option"><input type="radio" name="q3" value="lily">Knowing God is always with me</label><br>
+      <label class="option"><input type="radio" name="q3" value="cade">Having a plan and a purpose</label><br>
+      <label class="option"><input type="radio" name="q3" value="jacob">Taking one small step at a time</label>
+    </div>
+
+    <div class="question">
+      <h2>4. Which Bible hero inspires you most?</h2>
+      <label class="option"><input type="radio" name="q4" value="anna">Esther – stood strong and saved her people</label><br>
+      <label class="option"><input type="radio" name="q4" value="lily">Ruth – stayed loyal and trusted God's plan</label><br>
+      <label class="option"><input type="radio" name="q4" value="cade">David – faced Goliath with courage</label><br>
+      <label class="option"><input type="radio" name="q4" value="jacob">Daniel – stood firm even in the lion’s den</label>
+    </div>
+
+    <div class="question">
+      <h2>5. If someone needed help, you'd…</h2>
+      <label class="option"><input type="radio" name="q5" value="anna">Jump in and speak up</label><br>
+      <label class="option"><input type="radio" name="q5" value="lily">Pray and encourage them quietly</label><br>
+      <label class="option"><input type="radio" name="q5" value="cade">Make a plan and take the lead</label><br>
+      <label class="option"><input type="radio" name="q5" value="jacob">Be there and stay steady</label>
+    </div>
+
+    <button type="button" id="submitBtn">See My Result</button>
+  </form>
+
+  <div id="result" style="display: none;"></div>
+
+  <script>
+    document.getElementById("submitBtn").addEventListener("click", function () {
+      const answers = ["q1", "q2", "q3", "q4", "q5"];
+      const counts = { anna: 0, lily: 0, cade: 0, jacob: 0 };
+
+      for (let q of answers) {
+        const val = document.querySelector(`input[name="${q}"]:checked`);
+        if (val) counts[val.value]++;
+      }
+
+      let resultKey = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+
+      const results = {
+        anna: {
+          title: "You’re Bold-Brave like Anna!",
+          text: "You step forward when things get scary. Like Anna the Bear, you help others face their fears and lead with courage and love."
+        },
+        lily: {
+          title: "You’re Quiet-Brave like Lily!",
+          text: "You may be soft-spoken, but your courage runs deep. Like Lily the Turtle, you stay faithful, steady, and strong."
+        },
+        cade: {
+          title: "You’re Mission-Brave like Cade!",
+          text: "You see a challenge and say, 'Let’s go!' Like Cade the Cheetah, you’re fast, focused, and fearless when it comes to helping others."
+        },
+        jacob: {
+          title: "You’re Calm-Brave like Jacob!",
+          text: "You don’t have to shout to be brave. Like Jacob the Panther, your confidence is quiet, wise, and powerful."
+        }
+      };
+
+      const resultBox = document.getElementById("result");
+      resultBox.innerHTML = `<h2>${results[resultKey].title}</h2><p>${results[resultKey].text}</p>`;
+      resultBox.style.display = "block";
+    });
+  </script>
+
+    <footer>
+    <p>Back to <a href="index.html">Anna’s Courage Page</a> | © 2025 Faith Hero Network</p>
+  </footer>
+</body>
+</html>
